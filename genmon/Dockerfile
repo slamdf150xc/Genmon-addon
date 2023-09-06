@@ -11,10 +11,10 @@ EXPOSE 443
 EXPOSE 8000
 
 RUN git clone http://github.com/jgyates/genmon.git /opt/genmon
-RUN chmod 775 startgenmon.sh
-RUN chmod 775 genmonmaint.sh
-RUN /bin/bash /git/genmon/genmonmaint.sh -i -n
-RUN /git/genmon/startgenmon.sh start
+RUN chmod 775 /opt/genmon/startgenmon.sh
+RUN chmod 775 /opt/genmon/genmonmaint.sh
+RUN /bin/bash /opt/genmon/genmonmaint.sh -i -n
+RUN /opt/genmon/startgenmon.sh start
 
 RUN sed -i 's/use_serial_tcp = False/use_serial_tcp = True/g' /etc/genmon/genmon.conf
 
