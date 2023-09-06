@@ -1,14 +1,24 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.1.0
-# hadolint ignore=DL3006
-FROM ${BUILD_FROM}
+FROM python
 
-# Copy root filesystem
-COPY rootfs /
+RUN apt update -y
+RUN apt upgrade -y
 
-# Setup base
-RUN apk add --no-cache \
-    coreutils=9.3-r1 \
-    wget=1.21.4-r0
+#The timezone specified here just bypasses some required configuration, it does not appear to be configuring a persistent setting.
+RUN DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt install -y sudo cron net-tools nano
+
+EXPOSE 22
+EXPOSE 443
+EXPOSE 8000
+
+RUN git clone http://github.com/jgyates/genmon.git /opt/genmon
+RUN chmod 775 startgenmon.sh
+RUN chmod 775 genmonmaint.sh
+RUN /bin/bash /git/genmon/genmonmaint.sh -i -n
+RUN /git/genmon/startgenmon.sh start
+
+RUN sed -i 's/use_serial_tcp = False/use_serial_tcp = True/g' /etc/genmon/genmon.conf
+
+CMD /git/genmon/startgenmon.sh start && tail -F /var/log/genmon.log
 
 # Build arguments
 ARG BUILD_ARCH
@@ -26,11 +36,11 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Franck Nijhof <frenck@addons.community>" \
+    maintainer="Randy Brown <slamdf150xc@gmail.com>" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
     org.opencontainers.image.vendor="Home Assistant Community Add-ons" \
-    org.opencontainers.image.authors="Franck Nijhof <frenck@addons.community>" \
+    org.opencontainers.image.authors="Randy Brown <slamdf150xc@gmail.com>" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.url="https://addons.community" \
     org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \

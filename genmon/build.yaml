@@ -6,5 +6,5 @@ build_from:
   armv7: ghcr.io/hassio-addons/base:14.1.0
   i386: ghcr.io/hassio-addons/base:14.1.0
 codenotary:
-  base_image: codenotary@frenck.dev
-  signer: codenotary@frenck.dev
+  base_image: slamdf150xc@gmail.com
+  signer: slamdf150xc@gmail.com

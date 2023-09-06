@@ -1,10 +1,10 @@
 ---
-name: Example
+name: GenMon
 version: dev
-slug: example
-description: Example add-on by Community Home Assistant Add-ons
-url: https://github.com/hassio-addons/addon-example
-codenotary: codenotary@frenck.dev
+slug: genmon
+description: Genmon add-on for Home Assistant
+url: https://github.com/slamdf150xc/Genmon-addon
+codenotary: slamdf150xc@gmail.com
 init: false
 arch:
   - aarch64
@@ -18,3 +18,5 @@ options:
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)
   seconds_between_quotes: int(1,120)
+ingress: true
+ingress_port: 8000
