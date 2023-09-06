@@ -18,7 +18,7 @@ RUN /opt/genmon/startgenmon.sh start
 
 RUN sed -i 's/use_serial_tcp = False/use_serial_tcp = True/g' /etc/genmon/genmon.conf
 
-CMD /git/genmon/startgenmon.sh start && tail -F /var/log/genmon.log
+CMD /opt/genmon/startgenmon.sh start && tail -F /var/log/genmon.log
 
 # Build arguments
 ARG BUILD_ARCH
