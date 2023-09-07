@@ -10,7 +10,7 @@ EXPOSE 22
 EXPOSE 443
 EXPOSE 8000
 
-RUN git clone http://github.com/jgyates/genmon.git /opt/genmon
+RUN git clone https://github.com/jgyates/genmon.git /opt/genmon
 RUN chmod 775 /opt/genmon/startgenmon.sh
 RUN chmod 775 /opt/genmon/genmonmaint.sh
 RUN /bin/bash /opt/genmon/genmonmaint.sh -i -n
