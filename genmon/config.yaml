@@ -2,7 +2,7 @@
 name: GenMon
 version: dev
 slug: genmon
-description: Genmon add-on for Home Assistant
+description: GenMon add-on for Home Assistant
 url: https://github.com/slamdf150xc/Genmon-addon
 codenotary: slamdf150xc@gmail.com
 init: false
