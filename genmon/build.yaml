@@ -1,10 +1,10 @@
 ---
 build_from:
-  aarch64: ghcr.io/hassio-addons/base:14.1.0
-  amd64: ghcr.io/hassio-addons/base:14.1.0
-  armhf: ghcr.io/hassio-addons/base:14.1.0
-  armv7: ghcr.io/hassio-addons/base:14.1.0
-  i386: ghcr.io/hassio-addons/base:14.1.0
+  aarch64: ghcr.io/hassio-addons/aarch64-base-python:latest
+  amd64: ghcr.io/home-assistant/amd64-base-python:latest
+  armhf: ghcr.io/hassio-addons/armhf-base-python:latest
+  armv7: ghcr.io/hassio-addons/armv7-base-python:latest
+  i386: ghcr.io/hassio-addons/i386-base-python:latest
 codenotary:
   base_image: slamdf150xc@gmail.com
   signer: slamdf150xc@gmail.com

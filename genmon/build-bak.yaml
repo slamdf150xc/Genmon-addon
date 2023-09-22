@@ -1,0 +1,10 @@
+---
+build_from:
+  aarch64: ghcr.io/hassio-addons/aarch64-base-debian:bookworm
+  amd64: ghcr.io/home-assistant/amd64-base-debian:bookworm
+  armhf: ghcr.io/hassio-addons/armhf-base-debian:bookworm
+  armv7: ghcr.io/hassio-addons/armv7-base-debian:bookworm
+  i386: ghcr.io/hassio-addons/i386-base-debian:bookworm
+codenotary:
+  base_image: slamdf150xc@gmail.com
+  signer: slamdf150xc@gmail.com

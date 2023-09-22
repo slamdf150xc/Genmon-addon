@@ -1,6 +1,6 @@
-# Home Assistant Community Add-on: Example
+# Home Assistant Community Add-on: GenMon
 
-This is an example add-on for Home Assistant. When started, it displays a
+This is a GenMon add-on for Home Assistant. When started, it displays a
 random quote every 5 seconds.
 
 It shows off several features and structures like:
@@ -15,32 +15,25 @@ It shows off several features and structures like:
 - Small use of the Bash function library in our base images.
 - The use of Docker label schema.
 
-## Installation
-
-The installation of this add-on is pretty straightforward and not different in
-comparison to installing any other Home Assistant add-on.
-
-1. Click the Home Assistant My button below to open the add-on on your Home
-   Assistant instance.
-
-   [![Open this add-on in your Home Assistant instance.][addon-badge]][addon]
-
-1. Click the "Install" button to install the add-on.
-1. Start the "Example" add-on.
-1. Check the logs of the "Example" add-on to see it in action.
-
 ## Configuration
 
-Eventought this add-on is just an example add-on, it does come with some
-configuration options to play around with.
+I recommend
 
 **Note**: _Remember to restart the add-on when the configuration is changed._
 
-Example add-on configuration:
+GenMon add-on configuration:
 
 ```yaml
-log_level: info
-seconds_between_quotes: 5
+sitename: Testing
+serial_tcp_ip_address: 10.10.10.35
+serial_tcp_port: 6638
+enable_mqtt: true
+mqtt_ip_address: 172.17.0.2
+mqtt_username: mqtt
+mqtt_password: MySuperS3retP@ssw0rd!
+mqtt_port: 1883
+fuel_type: Natural Gas
+generator_size: 26
 ```
 
 ### Option: `log_level`

@@ -1,24 +1,24 @@
-FROM python
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-RUN apt update -y
-RUN apt upgrade -y
-
-#The timezone specified here just bypasses some required configuration, it does not appear to be configuring a persistent setting.
-RUN DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt install -y sudo cron net-tools nano
-
-EXPOSE 22
-EXPOSE 443
 EXPOSE 8000
 
+RUN apk update
+RUN apk add --no-cache apt git net-tools sudo gcc cmake make libffi-dev cargo libmodbus-dev
+RUN pip3 install --upgrade pip
 RUN git clone https://github.com/jgyates/genmon.git /opt/genmon
-RUN chmod 775 /opt/genmon/startgenmon.sh
-RUN chmod 775 /opt/genmon/genmonmaint.sh
-RUN /bin/bash /opt/genmon/genmonmaint.sh -i -n
+WORKDIR /opt/genmon
+RUN pip install -r requirements.txt
+
+RUN chmod +x /opt/genmon/genmonmaint.sh
+RUN /bin/bash /opt/genmon/genmonmaint.sh -s
+
+RUN chmod +x /opt/genmon/startgenmon.sh
 RUN /opt/genmon/startgenmon.sh start
 
-RUN sed -i 's/use_serial_tcp = False/use_serial_tcp = True/g' /etc/genmon/genmon.conf
-
-CMD /opt/genmon/startgenmon.sh start && tail -F /var/log/genmon.log
+COPY run.sh /
+RUN chmod +x /run.sh
+CMD [ "/run.sh" ]
 
 # Build arguments
 ARG BUILD_ARCH

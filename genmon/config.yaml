@@ -1,11 +1,15 @@
 ---
 name: GenMon
-version: dev
+version: 0.1.01
 slug: genmon
 description: GenMon add-on for Home Assistant
 url: https://github.com/slamdf150xc/Genmon-addon
 codenotary: slamdf150xc@gmail.com
 init: false
+hassio_api: true
+hassio_role: default
+map:
+  - share:rw
 arch:
   - aarch64
   - amd64
@@ -13,11 +17,20 @@ arch:
   - armv7
   - i386
 options:
-  log_level: info
-  seconds_between_quotes: 5
+  sitename: "SiteName"
+  serial_tcp_ip_address: 10.10.10.35
+  serial_tcp_port: 6638
 schema:
-  log_level: list(trace|debug|info|notice|warning|error|fatal)
-  seconds_between_quotes: int(1,120)
+  sitename: str?
+  serial_tcp_ip_address: str?
+  serial_tcp_port: port?
+  generator_size: int?
+  fuel_type: list(Natural Gas|Propane|Diesel|Gasoline)?
+  enable_mqtt: bool?
+  mqtt_ip_address: str?
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_port: port?
 ingress: true
 ingress_port: 8000
 panel_icon: mdi:engine-outline
