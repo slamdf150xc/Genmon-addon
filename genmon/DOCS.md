@@ -9,6 +9,9 @@ settings that I needed for my environment. Any settings set here on the inital r
 of the addon will be set in the config files. All of these settings can also be
 set in the GUI.
 
+All config files are accessable in the /addons/genmon directory in Home Assistant.
+This will allow the config changes to persist across updates.
+
 **Note**: _Currently, any settings changed after the inital run won't be reflected in the app._
 
 GenMon add-on configuration:
