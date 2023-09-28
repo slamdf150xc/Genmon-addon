@@ -1,25 +1,15 @@
 # Home Assistant Community Add-on: GenMon
 
-This is a GenMon add-on for Home Assistant. When started, it displays a
-random quote every 5 seconds.
-
-It shows off several features and structures like:
-
-- Full blown GitHub repository.
-- General Dockerfile structure and setup.
-- The use of the `config.yaml` and `build.yaml` files.
-- General shell scripting structure (`run.sh`).
-- Quality assurance using CodeClimate.
-- Continuous integration and deployment using GitLab.
-- Usage of the Community Home Assistant Add-ons build environment.
-- Small use of the Bash function library in our base images.
-- The use of Docker label schema.
+This is a GenMon add-on for Home Assistant.
 
 ## Configuration
 
-I recommend
+All of the following configurations are optional. These settings were the common
+settings that I needed for my environment. Any settings set here on the inital run
+of the addon will be set in the config files. All of these settings can also be
+set in the GUI.
 
-**Note**: _Remember to restart the add-on when the configuration is changed._
+**Note**: _Currently, any settings changed after the inital run won't be reflected in the app._
 
 GenMon add-on configuration:
 
@@ -36,42 +26,45 @@ fuel_type: Natural Gas
 generator_size: 26
 ```
 
-### Option: `log_level`
+### Option: `sitename`
 
-The `log_level` option controls the level of log output by the add-on and can
-be changed to be more or less verbose, which might be useful when you are
-dealing with an unknown issue. Possible values are:
+The `sitename` option sets the Site Name for the Genmon software.
 
-- `trace`: Show every detail, like all called internal functions.
-- `debug`: Shows detailed debug information.
-- `info`: Normal (usually) interesting events.
-- `warning`: Exceptional occurrences that are not errors.
-- `error`: Runtime errors that do not require immediate action.
-- `fatal`: Something went terribly wrong. Add-on becomes unusable.
+### Option: `serial_tcp_ip_address`
 
-Please note that each level automatically includes log messages from a
-more severe level, e.g., `debug` also shows `info` messages. By default,
-the `log_level` is set to `info`, which is the recommended setting unless
-you are troubleshooting.
+Sets IP address of the Genmon rs232 bridge.
 
-### Option: `seconds_between_quotes`
+### Option: `serial_tcp_port`
 
-Sets the number of seconds between the output of each quote. The value
-must be between `1` and `120` seconds. This value is set to `5` seconds by
-default.
+Sets the port the Genmon rs232 bridge exposes.
 
-## Changelog & Releases
+### Option: `fuel_type`
 
-This repository keeps a change log using [GitHub's releases][releases]
-functionality.
+The fuel type your generator runs on.
 
-Releases are based on [Semantic Versioning][semver], and use the format
-of `MAJOR.MINOR.PATCH`. In a nutshell, the version will be incremented
-based on the following:
+### Option: `generator_size`
 
-- `MAJOR`: Incompatible or major changes.
-- `MINOR`: Backwards-compatible new features and enhancements.
-- `PATCH`: Backwards-compatible bugfixes and package updates.
+The kWh of your generator.
+
+### Option: `enable_mqtt`
+
+If enabled, MQTT will be set to `True` in genloader.conf.
+
+### Option: `mqtt_ip_address`
+
+The IP address of your MQTT server.
+
+### Option: `mqtt_username`
+
+The user name to authenticate to your MQTT server.
+
+### Option: `mqtt_password`
+
+The password for the MQTT user.
+
+### Option: `mqtt_port`
+
+The port exposed by your MQTT server.
 
 ## Support
 
@@ -86,20 +79,15 @@ You have several options to get them answered:
 - The Home Assistant [Community Forum][forum].
 - Join the [Reddit subreddit][reddit] in [/r/homeassistant][reddit]
 
-You could also [open an issue here][issue] GitHub.
-
 ## Authors & contributors
 
-The original setup of this repository is by [Franck Nijhof][frenck].
-
-For a full list of all authors and contributors,
-check [the contributor's page][contributors].
+The original setup of this repository is by [Randy Brown][randy].
 
 ## License
 
 MIT License
 
-Copyright (c) 2017-2023 Franck Nijhof
+Copyright (c) 2023 Randy Brown
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -125,7 +113,7 @@ SOFTWARE.
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord]: https://discord.me/hassioaddons
 [forum]: https://community.home-assistant.io/t/repository-community-hass-io-add-ons/24705?u=frenck
-[frenck]: https://github.com/frenck
+[randy]: https://github.com/slamdf150xc/
 [issue]: https://github.com/hassio-addons/addon-example/issues
 [reddit]: https://reddit.com/r/homeassistant
 [releases]: https://github.com/hassio-addons/addon-example/releases

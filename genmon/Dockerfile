@@ -3,15 +3,21 @@ FROM $BUILD_FROM
 
 EXPOSE 8000
 
+VOLUME /addons
+
 RUN apk update
-RUN apk add --no-cache apt git net-tools sudo gcc cmake make libffi-dev cargo libmodbus-dev
+RUN apk add --no-cache git net-tools sudo gcc cmake make libffi-dev cargo libmodbus-dev
+
 RUN pip3 install --upgrade pip
+
 RUN git clone https://github.com/jgyates/genmon.git /opt/genmon
+
 WORKDIR /opt/genmon
+
 RUN pip install -r requirements.txt
 
 RUN chmod +x /opt/genmon/genmonmaint.sh
-RUN /bin/bash /opt/genmon/genmonmaint.sh -s
+RUN /bin/bash /opt/genmon/genmonmaint.sh -i -n
 
 RUN chmod +x /opt/genmon/startgenmon.sh
 RUN /opt/genmon/startgenmon.sh start
