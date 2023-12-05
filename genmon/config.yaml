@@ -1,6 +1,6 @@
 ---
 name: GenMon
-version: 0.1.15
+version: 0.2.0
 slug: genmon
 description: GenMon add-on for Home Assistant
 url: https://github.com/slamdf150xc/Genmon-addon
